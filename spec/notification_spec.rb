@@ -69,6 +69,15 @@ describe Houston::Notification do
     it { should == { key1: 1, key2: 'abc' } }
   end
 
+  describe '::new' do
+    it "should not alter params in place" do
+      options = notification_options.dup
+      Houston::Notification.new(options)
+      expect(options).to eq(notification_options)
+    end
+
+  end
+
   context 'using :device instead of :token' do
     subject do
       notification_options[:device] = notification_options[:token]

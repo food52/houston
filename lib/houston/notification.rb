@@ -36,18 +36,19 @@ module Houston
     alias :device :token
     alias :device= :token=
 
-    def initialize(options = {})
-      @token = options.delete(:token) || options.delete(:device)
-      @alert = options.delete(:alert)
-      @badge = options.delete(:badge)
-      @sound = options.delete(:sound)
-      @category = options.delete(:category)
-      @expiry = options.delete(:expiry)
-      @id = options.delete(:id)
-      @priority = options.delete(:priority)
-      @content_available = options.delete(:content_available)
-      @mutable_content = options.delete(:mutable_content)
-      @custom_data = options
+    def initialize(options= {})
+      options_copy = options.dup
+      @token = options_copy.delete(:token) || options_copy.delete(:device)
+      @alert = options_copy.delete(:alert)
+      @badge = options_copy.delete(:badge)
+      @sound = options_copy.delete(:sound)
+      @category = options_copy.delete(:category)
+      @expiry = options_copy.delete(:expiry)
+      @id = options_copy.delete(:id)
+      @priority = options_copy.delete(:priority)
+      @content_available = options_copy.delete(:content_available)
+      @mutable_content = options_copy.delete(:mutable_content)
+      @custom_data = options_copy
     end
 
     def payload
